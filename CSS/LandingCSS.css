@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.2);
+}
+
+.name {
+  font-family: "Nerko One", cursive;
+  font-size: xx-large;
+}
+
+.centerMe {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-top: 160px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
