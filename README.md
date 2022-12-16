@@ -23,4 +23,27 @@ BASIC USER
 ### MPV I - WireFrame
 
 Version I
-![Version I](/wfv1.jpg)
+![Version I](/figma.jpg)
+
+
+## Git Workflow
+
+Local Machine
+- `git branch` list all local branches
+- `git branch -r` list all remote branches
+
+- `git switch dev` OR `git checkout dev` move you to dev branch
+- `git checkout -b <new branchName>`  OR `git switch -c <new branchName>` 
+  - create a new branch off of dev
+  - creates a local branch only (not tracking any remote branch named: `<new branchName>`)
+- Implent a feature based on issue
+  - adding new code 
+
+- `git add .` add all current changes and prepare for staging
+- `git commit -m "message: what this commit does"` commit 
+- `git push origin <new branchName>` 
+  
+On GH
+- create a PR
+- make sure you double check: base === dev
+- wait for it to be approved
