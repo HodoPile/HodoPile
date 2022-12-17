@@ -1,12 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <head>
+    <meta charset="UTF-8" />
     <title>HodoPile</title>
-</head>
-<body>
-    
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="./css/landing.css" />
+  </head>
+
+  <body>
+
+    <div class="navbar bg-base-100">
+      <div class="navbar-start">
+        <img
+          src="https://toppng.com/public/uploads/preview/airplane-take-off-icon-airplane-1156291325186q3by6zc3.png"
+          width="50px"
+          height="50px"
+          sizes=""
+          srcset=""
+        />
+      </div>
+      <div class="navbar-center">
+        <a class="btn btn-ghost normal-case text-xl">HodoPile</a>
+      </div>
+      <div class="navbar-end">
+        <button class="btn btn-outline">HOME</button>
+        <button class="btn btn-outline">PROFILE</button>
+        <button class="btn btn-outline">ABOUT US</button>
+      </div>
+    </div>
+    <!-- ********************************************************NAV BAR ENDS******************************************************************************** -->
+
+    <div class="centerMe">
+      <h1 class="name">HodoPile</h1>
+      <form action="submit">
+        <div class="form-control w-full max-w-xs">
+          <label class="label" for="inp-text">
+            <span class="label-text"> Helping you choose your next destination </span>
+          </label>
+          <input
+            id="inp-text"
+            class="input input-bordered w-full max-w-xs"
+            type="text"
+            placeholder="Search Location"
+          />
+        </div>
+      </form>
+    </div>
+    <!-- ********************************************************H1/FORM ENDS******************************************************************************** -->
+
+    <div id="cards-container" class="cards-container">
+      <div class="card w-60 bg-base-100 shadow-xl image-full">
+        <figure>
+          <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Shoes!</h2>
+          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <div class="card-actions">
+            <button class="btn btn-primary">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ********************************************************CARDS ENDS******************************************************************************** -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>
