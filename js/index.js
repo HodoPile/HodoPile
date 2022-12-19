@@ -10,6 +10,7 @@ const eu_collections = "collections/europe"
 const inputTextField = document.getElementById("inp-text")
 const cardsContainer = document.getElementById("cards-container")
 
+
 const debounce = (fn , delay) => {
 // PROBLEM: need to debounce fn calls because listener will listen to every character inputed by user
 // DONE implement debounce
@@ -31,20 +32,21 @@ const handleInputChange = (e) => {
     }
 }
 
-const renderResults = ( list ) => {
-    
+// TODO: get the id of the card to make a request to fetch location information
+const handleCardClick = (e) => {
+    const val = e
+    console.log(val)
+}
+
+const renderResults = ( list ) => {   
     if( cardsContainer.childNodes ){
         while( cardsContainer.firstChild ){
             cardsContainer.removeChild( cardsContainer.lastChild )
         }
     }
-
     list.forEach( destinationObj => createCardElement( destinationObj ))
 }
 
-// TODO - render tags on each image 
-        // will allow the user to search for new locations + reload landing pg results
-// TODO - check for bad/null descriptions (null, personal description of author)
 // TODO - retrieve location information GET /photos/:id where id is photos id
         // on photo click fetch photo information data
 const createCardElement = ( destinationObj ) => {
@@ -59,17 +61,17 @@ const createCardElement = ( destinationObj ) => {
     const { title } = tags[0]
     
     const card = document.createElement("div")
-    card.setAttribute("id","virtual-card")
+    card.setAttribute("id",`id:${id}`)
+    card.setAttribute("class","card target w-60 bg-base-100 shadow-xl image-full")
     card.innerHTML = `
-        <div id="photo-${id}" class="card w-60 bg-base-100 shadow-xl image-full">
-            <figure>
-                <img src="${small}" alt="${alt_description}"/>
-            </figure>
-            <div class="card-body">
-                <p class="card-description">${description}</p>
-                <p class="credit">Photo by ${first_name} ${last_name} on Unsplash</p>
-                <p>${title}</p>
-            </div>
+        <figure>
+            <img src="${small}" alt="${alt_description}"/>
+        </figure>
+        <img class="icon-heart" src="../images/icons/heart_icon.png" alt="heart icon"/>
+        <div class="card-body">
+            <p class="card-description">${description}</p>
+            <p class="credit">Photo by ${first_name} ${last_name} on Unsplash</p>
+            <p>${title}</p>
         </div>
     `
     cardsContainer.appendChild( card )
@@ -89,8 +91,8 @@ const getUnsplashImgURL = ( query ) => {
 }
 
 inputTextField.addEventListener( "input", debounce( handleInputChange, DELAY_INPUT ))
+cardsContainer.addEventListener("click", handleCardClick)
 
-// TODO randomize locations for every page refresh
 window.onload = ( e ) => {
     getUnsplashImgURL('africa')
 };
