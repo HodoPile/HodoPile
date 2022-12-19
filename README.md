@@ -23,12 +23,12 @@ BASIC USER
 ### MPV I - WireFrame
 
 Version I
-![Version I](/figma.jpg)
+![Version I](/images/wireframes/figma.jpg)
 
 
-## Git Workflow
+## Git and GitHub Workflow
 
-Local Machine
+On Local Machine
 - `git branch` list all local branches
 - `git branch -r` list all remote branches
 
@@ -46,4 +46,4 @@ Local Machine
 On GH
 - create a PR
 - make sure you double check: base === dev
-- wait for it to be approved
+- wait for it to be approved / reviewed by team member
