@@ -1,6 +1,6 @@
 "use strict"
 
-const UNSPLASH_ACCESS_KEY = "Vd8pXJDerwdrThr-HAsU9U8LHjAuWlFzi782_HYjlqU"
+const UNSPLASH_ACCESS_KEY = "SECRET"
 const UNSPLASH_BASE_URL = "https://api.unsplash.com/"
 const DELAY_INPUT = 1500
 
