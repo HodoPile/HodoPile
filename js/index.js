@@ -1,6 +1,6 @@
 "use strict"
 
-const UNSPLASH_ACCESS_KEY = "SECRET"
+const UNSPLASH_ACCESS_KEY = "Vd8pXJDerwdrThr-HAsU9U8LHjAuWlFzi782_HYjlqU"
 const UNSPLASH_BASE_URL = "https://api.unsplash.com/"
 const DELAY_INPUT = 1500
 
@@ -9,7 +9,6 @@ const eu_collections = "collections/europe"
 
 const inputTextField = document.getElementById("inp-text")
 const cardsContainer = document.getElementById("cards-container")
-
 
 const debounce = (fn , delay) => {
 // PROBLEM: need to debounce fn calls because listener will listen to every character inputed by user
@@ -34,8 +33,9 @@ const handleInputChange = (e) => {
 
 // TODO: get the id of the card to make a request to fetch location information
 const handleCardClick = (e) => {
-    const val = e
-    console.log(val)
+    const id_attribute = e.target.firstElementChild.id
+    const [ ,id ] = id_attribute.split(":")
+    
 }
 
 const renderResults = ( list ) => {   
@@ -61,9 +61,10 @@ const createCardElement = ( destinationObj ) => {
     const { title } = tags[0]
     
     const card = document.createElement("div")
-    card.setAttribute("id",`id:${id}`)
+    card.setAttribute("id","virtual-card")
     card.setAttribute("class","card target w-60 bg-base-100 shadow-xl image-full")
     card.innerHTML = `
+    <div id=id:${id}>
         <figure>
             <img src="${small}" alt="${alt_description}"/>
         </figure>
@@ -73,7 +74,9 @@ const createCardElement = ( destinationObj ) => {
             <p class="credit">Photo by ${first_name} ${last_name} on Unsplash</p>
             <p>${title}</p>
         </div>
+    </div>
     `
+    card.addEventListener( "click", handleCardClick )
     cardsContainer.appendChild( card )
 }
 
@@ -85,13 +88,12 @@ const getUnsplashImgURL = ( query ) => {
     fetch(`${ UNSPLASH_BASE_URL }/search/photos?client_id=${ UNSPLASH_ACCESS_KEY }&page=1&per_page=10&query=${ query }}`)
         .then( response => response.json())
         .then( ({ results }) => {
-            renderResults( results )}
-        )
+            renderResults( results )
+        })
         .catch( err => console.log( err ) )
 }
 
 inputTextField.addEventListener( "input", debounce( handleInputChange, DELAY_INPUT ))
-cardsContainer.addEventListener("click", handleCardClick)
 
 window.onload = ( e ) => {
     getUnsplashImgURL('africa')
