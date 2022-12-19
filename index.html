@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <title>HodoPile</title>
@@ -13,7 +12,6 @@
   </head>
 
   <body>
-
     <div class="navbar bg-base-100">
       <div class="navbar-start">
         <img
@@ -40,7 +38,9 @@
       <form action="submit">
         <div class="form-control w-full max-w-xs">
           <label class="label" for="inp-text">
-            <span class="label-text"> Helping you choose your next destination </span>
+            <span class="label-text">
+              Helping you choose your next destination
+            </span>
           </label>
           <input
             id="inp-text"
@@ -53,16 +53,25 @@
     </div>
     <!-- ********************************************************H1/FORM ENDS******************************************************************************** -->
 
-    <div id="cards-container" class="cards-container">
+    <div
+      id="cards-container"
+      class="cards-container landingCard flex flex-wrap justify-around ..."
+    >
       <div class="card w-60 bg-base-100 shadow-xl image-full">
         <figure>
           <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
         </figure>
         <div class="card-body">
-          <h2 class="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div class="card-actions">
-            <button class="btn btn-primary">Buy Now</button>
+          <h2 class="card-title">Chicago</h2>
+          <p>Windy</p>
+          <div class="card-actions justify-end">
+            <div class="rating gap-1">
+              <input
+                type="radio"
+                name="rating-3"
+                class="mask mask-heart bg-red-400"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -72,5 +81,5 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./js/index.js"></script>
-</body>
+  </body>
 </html>

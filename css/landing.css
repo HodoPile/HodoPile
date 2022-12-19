@@ -3,15 +3,38 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .navbar {
   box-shadow: 0 8px 8px -8px rgba(0, 0, 0, 0.2);
+  z-index: -1;
 }
 
 .name {
   font-family: "Nerko One", cursive;
-  font-size: xx-large;
+  font-size: 28vh;
+  color: white;
+  -webkit-text-stroke: 0.3vh black;
+}
+
+.name::before {
+  content: attr(data-text);
+  position: absolute;
+  color: black;
+  -webkit-text-stroke: 0vh black;
+  overflow: hidden;
+  width: 0;
+  animation: animate 15s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    width: 0%;
+  }
+  70% {
+    width: 60%;
+  }
 }
 
 .centerMe {
@@ -19,12 +42,23 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  margin-top: 160px;
+  margin-top: -21px;
 }
 form {
   display: flex;
   justify-content: center;
   text-align: center;
+  margin-bottom: 20px;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.landingCard {
+  margin-bottom: 3px;
 }
 
 .cards-container{
