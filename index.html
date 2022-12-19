@@ -20,22 +20,25 @@
           src="https://toppng.com/public/uploads/preview/airplane-take-off-icon-airplane-1156291325186q3by6zc3.png"
           width="50px"
           height="50px"
-          sizes=""
-          srcset=""
         />
       </div>
       <div class="navbar-center">
         <a class="btn btn-ghost normal-case text-xl">HodoPile</a>
       </div>
       <div class="navbar-end">
-        <button class="btn btn-outline">HOME</button>
-        <button class="btn btn-outline">PROFILE</button>
-        <button class="btn btn-outline">ABOUT US</button>
+        <button id="login" class="btn btn-outline">LOGIN</button>
+        <button id="logout" class="btn btn-outline">LOGOUT</button> 
+        <button class="btn btn-outline">Favorites</button> <!-- isAuthed? Scroll to -->
+        <button class="btn btn-outline">ABOUT US</button> <!-- Scroll to -->
+        
       </div>
     </div>
     <!-- ********************************************************NAV BAR ENDS******************************************************************************** -->
 
     <div class="centerMe">
+
+      <div id="profile"></div>
+
       <h1 class="name">HodoPile</h1>
       <form action="submit">
         <div class="form-control w-full max-w-xs">
@@ -70,6 +73,7 @@
 
     <!-- ********************************************************CARDS ENDS******************************************************************************** -->
 
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./js/index.js"></script>
 </body>
