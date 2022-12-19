@@ -61,7 +61,6 @@ form {
   margin-bottom: 3px;
 }
 
-
 .cards-container{
 
   margin-top: 20px;
@@ -83,8 +82,15 @@ form {
 .credit{
   font-size: x-small;
 }
+.icon-heart{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 5%;
+  left: 85%;
+}
 
-/* fix not working on individual card hover */
+/* fix: not working on individual card hover */
 .virtual-card:hover {
   box-shadow: 0px 0px 30px 1px rgba(31, 202, 117, 0.421);
 }
