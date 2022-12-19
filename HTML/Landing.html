@@ -9,19 +9,14 @@
       rel="stylesheet"
       type="text/css"
     />
+    <link href="https://css.gg/trees.css" rel="stylesheet" />
     <link rel="stylesheet" href="../CSS/LandingCSS.css" />
   </head>
 
   <body>
     <div class="navbar bg-base-100">
       <div class="navbar-start">
-        <img
-          src="https://toppng.com/public/uploads/preview/airplane-take-off-icon-airplane-1156291325186q3by6zc3.png"
-          width="50px"
-          height="50px"
-          sizes=""
-          srcset=""
-        />
+        <i class="gg-trees"></i>
       </div>
       <div class="navbar-center">
         <a class="btn btn-ghost normal-case text-xl">HodoPile</a>
@@ -35,7 +30,7 @@
     <!-- ********************************************************NAV BAR ENDS******************************************************************************** -->
 
     <div class="centerMe">
-      <h1 class="name">HodoPile</h1>
+      <h1 data-text="HodoPile" class="name">HodoPile</h1>
 
       <form action="submit">
         <div class="form-control w-full max-w-xs">
@@ -44,7 +39,7 @@
           </label>
           <input
             type="text"
-            placeholder="Search Location"
+            placeholder="Search Location..."
             class="input input-bordered w-full max-w-xs"
           />
           <div id="location"></div>
@@ -53,23 +48,72 @@
     </div>
     <!-- ********************************************************H1/FORM ENDS******************************************************************************** -->
 
-    <div class="card w-60 bg-base-100 shadow-xl image-full">
-      <figure>
-        <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-      </figure>
-      <div class="card-body">
-        <h2 class="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div class="card-actions">
-          <button class="btn btn-primary">Buy Now</button>
+    <div class="landingCard flex flex-wrap justify-around ...">
+      <div>
+        <div class="card w-60 bg-base-100 shadow-xl image-full">
+          <figure>
+            <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">Chicago</h2>
+            <p>Windy</p>
+            <div class="card-actions justify-end">
+              <div class="rating gap-1">
+                <input
+                  type="radio"
+                  name="rating-3"
+                  class="mask mask-heart bg-red-400"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card w-60 bg-base-100 shadow-xl image-full">
+          <figure>
+            <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">New York</h2>
+            <p>City</p>
+            <div class="card-actions justify-end">
+              <div class="rating gap-1">
+                <input
+                  type="radio"
+                  name="rating-3"
+                  class="mask mask-heart bg-red-400"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card w-60 bg-base-100 shadow-xl image-full">
+          <figure>
+            <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">Praia da Rocha</h2>
+            <p>Beachy</p>
+            <div class="card-actions justify-end">
+              <div class="rating">
+                <input
+                  type="radio"
+                  name="rating-3"
+                  class="mask mask-heart bg-red-400"
+                  unchecked
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    -
-   
 
     <!-- ********************************************************CARDS ENDS******************************************************************************** -->
 
     <script src="https://cdn.tailwindcss.com"></script>
-</body>
+  </body>
 </html>
