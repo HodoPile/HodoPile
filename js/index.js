@@ -23,19 +23,18 @@ const debounce = (fn , delay) => {
         }, delay);
     }
 }
-
 const handleInputChange = (e) => {
     const userInput = e.target.value
-    if( userInput ) {
-        getUnsplashImgURL( userInput )
-    }
+    if( userInput ) getUnsplashImgURL( userInput )
 }
-
 // TODO: get the id of the card to make a request to fetch location information
 const handleCardClick = (e) => {
     const id_attribute = e.target.firstElementChild.id
     const [ ,id ] = id_attribute.split(":")
     
+}
+const handleFetchError = ({ errors }) => {
+    const [ errorMessage ] = errors
 }
 
 const renderResults = ( list ) => {   
@@ -46,7 +45,6 @@ const renderResults = ( list ) => {
     }
     list.forEach( destinationObj => createCardElement( destinationObj ))
 }
-
 // TODO - retrieve location information GET /photos/:id where id is photos id
         // on photo click fetch photo information data
 const createCardElement = ( destinationObj ) => {
@@ -81,10 +79,6 @@ const createCardElement = ( destinationObj ) => {
     cardsContainer.appendChild( card )
 }
 
-const handleFetchError = ({ errors }) => {
-    const [ errorMessage ] = errors
-}
-
 const getUnsplashImgURL = ( query ) => {
     fetch(`${ UNSPLASH_BASE_URL }/search/photos?client_id=${ UNSPLASH_ACCESS_KEY }&page=1&per_page=10&query=${ query }}`)
         .then( response => response.json())
@@ -99,37 +93,79 @@ inputTextField.addEventListener( "input", debounce( handleInputChange, DELAY_INP
 /* AUTHENTICATION */
 
 const runAuth = async () => {
+    const auth_configs = await getAuthConfiguration()
+    const config = {
+        ...auth_configs, 
+        authorizationParams: { redirect_uri: window.location.origin }
+    }
+    auth0
+        .createAuth0Client( config )
+        .then( auth0Client => {
+            handleUserAuthCredentials( auth0Client )
+            handleGetProfile( auth0Client )
+            handleGetUsersFavorites( auth0Client )
+        })
+        .catch( ( err ) => console.log( err ))
+}
+
+const getAuthConfiguration = async () => {
     const result = await fetch("http://localhost:3000/auth_config")
     const auth_configs = await result.json()
-    const config = {
-            ...auth_configs,
-            authorizationParams: { redirect_uri: window.location.origin }
-        }
-    auth0.createAuth0Client( config )
-        .then( async ( auth0Client ) => {
-        const loginButton = document.getElementById("login");
-        const logoutButton = document.getElementById("logout");
+    return auth_configs
+}
+const handleUserAuthCredentials = async (client) => {
+    
+    const loginButton = document.getElementById("login");
+    const logoutButton = document.getElementById("logout");
+
+    loginButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        client.loginWithRedirect();
+      });
+    
+      if (location.search.includes("state=") && 
+          (location.search.includes("code=") || 
+          location.search.includes("error="))
+      ){
+        await client.handleRedirectCallback();
+        window.history.replaceState({}, document.title, "/");
+      }
       
-        loginButton.addEventListener("click", (e) => {
-          e.preventDefault();
-          auth0Client.loginWithRedirect();
-        });
-      
-        if (location.search.includes("state=") && 
-            (location.search.includes("code=") || 
-            location.search.includes("error="))
-        ) {
-          await auth0Client.handleRedirectCallback();
-          window.history.replaceState({}, document.title, "/");
-        }
-        
-        logoutButton.addEventListener("click", (e) => {
-          e.preventDefault();
-          auth0Client.logout();
-        });
-      
-        const isAuthenticated = await auth0Client.isAuthenticated();
-        const userProfile = await auth0Client.getUser();
+      logoutButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        client.logout();
+      });
+}
+const handleGetProfile = async (client) => {
+    const isAuthenticated = await client.isAuthenticated();
+    const userProfile = await client.getUser();
+    const profileElement = document.getElementById("profile");
+    if (isAuthenticated) {
+        profileElement.style.display = "block";
+        profileElement.innerHTML = `
+                <p>${userProfile.name}</p>
+                <img src="${userProfile.picture}" />
+              `;
+    } else profileElement.style.display = "none";
+}
+const handleGetUsersFavorites = async (client) => {
+    const isAuthenticated = client.isAuthenticated()
+    let favorited = []
+    if(isAuthenticated){
+        const result = await fetch("http://localhost:3000/user")
+        const user = await result.json()
+        const { favorited:usersFavorited } = user[0]
+        favorited = [ ...usersFavorited ]
+    }
+
+    // handle rendering of cards
+
+}
+window.onload = ( e ) => {
+    getUnsplashImgURL('africa')
+    runAuth()
+};
+
         /*  
             email: "hodo@user.com"
             email_verified: false
@@ -139,28 +175,16 @@ const runAuth = async () => {
             sub: "auth0|639ff283d8dbda8325b0e654"
             updated_at: "2022-12-19T15:10:58.763Z"
         */
-        const profileElement = document.getElementById("profile");
-      
-        if (isAuthenticated) {
-          profileElement.style.display = "block";
-          profileElement.innerHTML = `
-                  <p>${userProfile.name}</p>
-                  <img src="${userProfile.picture}" />
-                `;
-        } else {
-          profileElement.style.display = "none";
-        }
-        })
-        .catch( ( err ) => console.log( err ))
-}
-
-const getFavs = async () => {
-    const result = await fetch("http://localhost:3000/user")
-    const user = await result.json()
-}
-
-window.onload = ( e ) => {
-    getUnsplashImgURL('africa')
-    runAuth()
-    getFavs()
-};
+        // const isAuthenticated = await auth0Client.isAuthenticated();
+        // const userProfile = await auth0Client.getUser(); 
+        // const profileElement = document.getElementById("profile");
+        
+        // if (isAuthenticated) {
+        //   profileElement.style.display = "block";
+        //   profileElement.innerHTML = `
+        //           <p>${userProfile.name}</p>
+        //           <img src="${userProfile.picture}" />
+        //         `;
+        // } else {
+        //   profileElement.style.display = "none";
+        // }
