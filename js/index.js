@@ -1,6 +1,6 @@
 "use strict"
 
-const UNSPLASH_ACCESS_KEY = "Vd8pXJDerwdrThr-HAsU9U8LHjAuWlFzi782_HYjlqU"
+const UNSPLASH_ACCESS_KEY = "SECRET"
 const UNSPLASH_BASE_URL = "https://api.unsplash.com/"
 const DELAY_INPUT = 1500
 
@@ -63,8 +63,8 @@ const createCardElement = ( destinationObj ) => {
     
     const card = document.createElement("div")
     card.setAttribute("id","virtual-card")
-    card.setAttribute("class","card target w-60 bg-base-100 l image-full")
-    card.innerHTML = `
+    card.setAttribute("class","card target w-60 bg-base-100 shadow-xl image-full")   
+     card.innerHTML = `
     <div id=id:${id}>
         <figure>
             <img src="${small}" alt="${alt_description}"/>

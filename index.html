@@ -26,16 +26,19 @@
         <a class="btn btn-ghost normal-case text-xl">HodoPile ™</a>
       </div>
       <div class="navbar-end">
+        <button id="login" class="btn btn-outline">LOGIN</button>
+        <button id="logout" class="btn btn-outline">LOGOUT</button> 
         <button class="btn btn-outline"><a href="#section1">HOME</a></button>
-        <button class="btn btn-outline">PROFILE</button>
-        <button class="btn btn-outline">
-          <a href="#section3">ABOUT</a>
-        </button>
+        <button class="btn btn-outline">Favorites</button> <!-- isAuthed? Scroll to -->
+        <button class="btn btn-outline"><a href="#section3">ABOUT</a></button> <!-- Scroll to -->
+        <!-- ----------------------------------------- -->
       </div>
     </div>
     <!-- ******************************section 1 start**************************NAV BAR ENDS******************************************************************************** -->
     <div id="section1">
       <div class="centerMe">
+
+      <div id="profile"></div>
         <h1 class="name font-bold" data-text="HodoPile">HodoPile</h1>
 
         <form action="submit">
@@ -158,7 +161,7 @@
         </div>
       </div>
     </footer>
-
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./js/index.js"></script>
   </body>
