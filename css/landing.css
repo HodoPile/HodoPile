@@ -94,3 +94,23 @@ form {
 .virtual-card:hover {
   box-shadow: 0px 0px 30px 1px rgba(31, 202, 117, 0.421);
 }
+.account_info_background {
+  width: 100%;
+  background:rgba(213, 197, 197, 0.2);
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+.personal_info {
+  background: linear-gradient(#2ed573, #f9ca24);
+  display: flex-wrap;
+  align-items:center;
+  justify-content: center;
+  padding: 5px 200px;
+  border-radius: 10px;
+}
+
+h1, h2 {
+  font-weight: bold;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+}

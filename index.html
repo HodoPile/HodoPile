@@ -25,19 +25,21 @@
       </div>
       <div class="navbar-end">
         <button id="login" class="btn btn-outline">LOGIN</button>
-        <button id="logout" class="btn btn-outline">LOGOUT</button> 
-        <button class="btn btn-outline">Favorites</button> <!-- isAuthed? Scroll to -->
-        <button class="btn btn-outline">ABOUT US</button> <!-- Scroll to -->
-        
+        <a href="#personal_info"
+          ><button id="logout" class="btn btn-outline">LOGOUT</button>
+          <button class="btn btn-outline">Favorites</button>
+          <!-- isAuthed? Scroll to --></a
+        >
+        <button class="btn btn-outline">ABOUT US</button>
+        <!-- Scroll to -->
       </div>
     </div>
     <!-- ********************************************************NAV BAR ENDS******************************************************************************** -->
 
     <div class="centerMe">
-
       <div id="profile"></div>
 
-      <h1 class="name">HodoPile</h1>
+      <h1 class="name" data-text="HodoPile">HodoPile</h1>
       <form action="submit">
         <div class="form-control w-full max-w-xs">
           <label class="label" for="inp-text">
@@ -82,6 +84,23 @@
 
     <!-- ********************************************************CARDS ENDS******************************************************************************** -->
 
+    <!-- **********************************************************profile****************************************************************************************** -->
+    <div class="account_info_background">
+      <div class="personal_info">
+        <h1>Personal info</h1>
+        <br />
+        <h2>Full Name</h2>
+        <input type="text" class="input" placeholder="full name" />
+        <h2>Address</h2>
+        <input type="text" class="input" placeholder="address" />
+        <h2>Email</h2>
+        <input type="text" class="input" placeholder="name@example.com" />
+        <h2>Phone Number</h2>
+        <input type="text" class="input" placeholder="phone number" />
+        <h2>Favorite Destinations</h2>
+        <input type="text" class="input" placeholder="favorite destinations" />
+      </div>
+    </div>
     <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./js/index.js"></script>
