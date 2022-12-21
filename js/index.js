@@ -1,7 +1,7 @@
 "use strict"
 
 const DELAY_INPUT = 1500
-const UNSPLASH_ACCESS_KEY = "SECRET"
+const UNSPLASH_ACCESS_KEY = "Vd8pXJDerwdrThr-HAsU9U8LHjAuWlFzi782_HYjlqU"
 const UNSPLASH_BASE_URL = "https://api.unsplash.com/"
 const eu_photos = "photos/europe"
 const eu_collections = "collections/europe"
@@ -75,6 +75,7 @@ const handleUserAuthCredentials = async (client) => {
     client.logout();
     });
 }
+
 const handleGetProfile = async (client) => {
     const isAuthenticated = await client.isAuthenticated()
     const userProfile = await client.getUser()
@@ -85,8 +86,10 @@ const handleGetProfile = async (client) => {
                 <p>${userProfile.name}</p>
                 <img src="${userProfile.picture}" />
             `
-    } else profileElement.style.display = "none"
+    } else profileElement.style.display = "none";
+    
 }
+
 const handleGetUsersFavorites = async (client) => {
     const isAuthenticated = client.isAuthenticated()
     let favorited = []
@@ -100,6 +103,7 @@ const handleGetUsersFavorites = async (client) => {
     // handle rendering of cards
 
 }
+
 const getAuthClient = async () => {
     const auth_configs = await getAuthConfiguration()
     const config = {
@@ -113,6 +117,7 @@ const getAuthClient = async () => {
             .catch( (err) => console.log(err) )
     )
 }
+
 const auth0Client = getAuthClient()
 auth0Client
     .then( async client => {
@@ -121,6 +126,8 @@ auth0Client
         await handleGetUsersFavorites( client )
     })
     .catch( err => console.log(err) )
+
+
 const handleHeartClick = async (e) => { 
     auth0Client
         .then( async client => {
@@ -158,10 +165,12 @@ const debounce = (fn , delay) => {
             }, delay);
         }
 }
+
 const handleInputChange = (e) => {
     const userInput = e.target.value
     if( userInput ) getUnsplashImgURL( userInput )
 }
+
 const handleCardClick = async (e) => {
 // DONE: get the id of the card to make a request to fetch location information
     const id_attribute = e.target.id
@@ -169,6 +178,7 @@ const handleCardClick = async (e) => {
     const card_data = await getFullCardInfo( id )
     return card_data
 }
+
 const renderResults = ( list ) => {   
     if( cardsContainer.childNodes ){
         while( cardsContainer.firstChild ){
@@ -183,7 +193,9 @@ const renderResults = ( list ) => {
     })
 
 }
+
 const createCardElement = ( destinationObj ) => {
+    console.log(destinationObj);
     const {
         urls: { small }, 
         alt_description,
@@ -196,20 +208,26 @@ const createCardElement = ( destinationObj ) => {
     const { title } = tags[0]
     const card = document.createElement("div")
     card.setAttribute("id",`cardID:${id}`)
-    card.setAttribute("class","card target w-60 bg-base-100 shadow-xl image-full")
+    card.setAttribute("class","card target bg-base-100 shadow-xl flex w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4")
     card.innerHTML = `
     <div id=id:${id}>
-        <figure>
-            <img src="${small}" alt="${alt_description}"/>
-        </figure>
-        <img id="hearts-cardID:${id}" class="icon-heart" src="../images/icons/heart_icon.png" alt="heart icon"/>
-        <div class="card-body">
-            <p class="card-description">${description}</p>
-            <p class="credit">Photo by ${first_name} ${last_name} on Unsplash</p>
-            <p>${title}</p>
-        </div>
+    <div class="card-body">
+    <h2 class="card-title">${title}</h2>
+    <img src=""${small}" alt="${alt_description}" />
+       <div class="card-actions justify-end">
+      <div class="rating gap-1">
+        <input
+          type="radio"
+          name="rating-3"
+          class="mask mask-heart bg-red-400"
+        />
+      </div>
     </div>
+    </div>
+
+  </div>
     `
+    
     card.addEventListener( "click", handleCardClick )
     cardsContainer.appendChild( card )
 }
